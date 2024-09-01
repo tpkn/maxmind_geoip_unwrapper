@@ -47,7 +47,6 @@ func main() {
 	// Stdout
 	var writer = csv.NewWriter(os.Stdout)
 	writer.Comma = ','
-	defer writer.Flush()
 
 	is_header := true
 
@@ -82,12 +81,12 @@ func main() {
 				log.Fatalln(err)
 			}
 		}
+	}
 
-		writer.Flush()
+	writer.Flush()
 
-		if err = writer.Error(); err != nil {
-			log.Fatalln(err)
-		}
+	if err := writer.Error(); err != nil {
+		log.Fatalln(err)
 	}
 }
 
